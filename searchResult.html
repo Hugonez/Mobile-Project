@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pesquisa na API do xivapi.com</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        #searchForm {
+            margin: 20px auto;
+        }
+
+        #searchForm button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #searchResults {
+            margin-top: 20px;
+            text-align: center; /* Centralize o texto dos botões */
+        }
+
+        #searchResults button {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            display: block;
+            width: 50%; /* Defina uma largura para os botões */
+            margin: 0 auto; /* Centralize os botões horizontalmente */
+        }
+    </style>
+</head>
+<body>
+    <h1>Pesquisa na API do xivapi.com</h1>
+    <form id="searchForm">
+        <label for="characterName">Nome do Personagem:</label>
+        <input type="text" id="characterName" required>
+        <button type="submit">Pesquisar</button>
+    </form>
+    <div id="searchResults">
+        <!-- Os resultados da pesquisa serão exibidos aqui -->
+    </div>
+
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const characterName = document.getElementById('characterName').value;
+            searchCharacter(characterName);
+        });
+
+        function searchCharacter(characterName) {
+            // URL da API do xivapi.com para pesquisar personagens pelo nome
+            const apiUrl = `https://xivapi.com/character/search?name=${encodeURIComponent(characterName)}`;
+
+            // Faça a solicitação GET à API usando a função fetch
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    // Manipule os resultados da pesquisa aqui
+                    displaySearchResults(data.Results);
+                })
+                .catch(error => {
+                    console.error('Erro ao realizar a pesquisa:', error);
+                });
+        }
+
+        function displaySearchResults(results) {
+            const searchResultsDiv = document.getElementById('searchResults');
+
+            if (results.length === 0) {
+                searchResultsDiv.innerHTML = 'Nenhum resultado encontrado.';
+                return;
+            }
+
+            let html = '';
+            results.forEach(result => {
+                html += `<button onclick="showCharacterDetails(${result.ID})">${result.Name} (ID: ${result.ID})</button>`;
+            });
+
+            searchResultsDiv.innerHTML = html;
+        }
+
+        function showCharacterDetails(characterID) {
+            // Redirecione para a página de detalhes do personagem com o ID como parâmetro de consulta
+            window.location.href = `characterDetails.html?id=${characterID}`;
+        }
+    </script>
+</body>
+</html>

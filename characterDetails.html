@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes do Personagem</title>
+</head>
+<body>
+    <h1>Detalhes do Personagem</h1>
+    <div id="characterDetails">
+        <!-- Os detalhes do personagem serão exibidos aqui -->
+    </div>
+
+    <script>
+        // Função para obter parâmetros de consulta da URL
+        function getQueryParameter(parameterName) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(parameterName);
+        }
+
+        // Obtém o ID do personagem da URL
+        const characterID = getQueryParameter('id');
+
+        if (characterID) {
+            // URL da API do xivapi.com para obter detalhes do personagem
+            const apiUrl = `https://xivapi.com/character/${characterID}`;
+
+            // Faça a solicitação GET à API usando a função fetch
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    // Manipule os detalhes do personagem aqui
+                    displayCharacterDetails(data);
+                })
+                .catch(error => {
+                    console.error('Erro ao obter detalhes do personagem:', error);
+                });
+        } else {
+            // Se não houver ID do personagem na consulta, exiba uma mensagem de erro
+            document.getElementById('characterDetails').innerHTML = 'Nenhum detalhe de personagem disponível.';
+        }
+
+        function displayCharacterDetails(characterData) {
+            const characterDetailsDiv = document.getElementById('characterDetails');
+
+            // Exiba os detalhes do personagem aqui (conforme documentação da API)
+            const characterName = characterData.Character.Name;
+            const characterServer = characterData.Character.Server;
+            // Adicione mais detalhes conforme necessário
+
+            const html = `<p>Nome: ${characterName}</p><p>Servidor: ${characterServer}</p>`;
+            characterDetailsDiv.innerHTML = html;
+        }
+    </script>
+</body>
+</html>

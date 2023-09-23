@@ -1,55 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Detalhes do Personagem</title>
-</head>
-<body>
-    <h1>Detalhes do Personagem</h1>
-    <div id="characterDetails">
-        <!-- Os detalhes do personagem serão exibidos aqui -->
-    </div>
-
-    <script>
-        // Função para obter parâmetros de consulta da URL
-        function getQueryParameter(parameterName) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(parameterName);
-        }
-
-        // Obtém o ID do personagem da URL
-        const characterID = getQueryParameter('id');
-
-        if (characterID) {
-            // URL da API do xivapi.com para obter detalhes do personagem
-            const apiUrl = `https://xivapi.com/character/${characterID}`;
-
-            // Faça a solicitação GET à API usando a função fetch
-            fetch(apiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    // Manipule os detalhes do personagem aqui
-                    displayCharacterDetails(data);
-                })
-                .catch(error => {
-                    console.error('Erro ao obter detalhes do personagem:', error);
-                });
-        } else {
-            // Se não houver ID do personagem na consulta, exiba uma mensagem de erro
-            document.getElementById('characterDetails').innerHTML = 'Nenhum detalhe de personagem disponível.';
-        }
-
-        function displayCharacterDetails(characterData) {
-            const characterDetailsDiv = document.getElementById('characterDetails');
-
-            // Exiba os detalhes do personagem aqui (conforme documentação da API)
-            const characterName = characterData.Character.Name;
-            const characterServer = characterData.Character.Server;
-            // Adicione mais detalhes conforme necessário
-
-            const html = `<p>Nome: ${characterName}</p><p>Servidor: ${characterServer}</p>`;
-            characterDetailsDiv.innerHTML = html;
-        }
-    </script>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Detalhe do Personagem</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Viewport meta tag for responsive design -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    </head>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="index.html">Lodestone</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="post.html">Sample Post</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <style>
+            /* Add your custom styles here */
+            .masthead {
+                background-image: url('path_to_your_background_image.jpg');
+                background-size: cover;
+                background-position: center;
+                color: white;
+                text-align: center;
+                padding: 100px 0;
+            }
+            .masthead h1 {
+                font-size: 2rem;
+                margin-bottom: 20px;
+            }
+            .character-image {
+                max-width: 100%;
+                height: auto;
+            }
+        </style>
+    <body>
+        <header class="masthead">
+                <div class="container position-relative">
+                    <h1>Detalhes do Personagem</h1>
+                    <div id="characterDetails">
+                        <!-- Substitua os detalhes do personagem pela imagem -->
+                        <img id="characterImage" src="" alt="Imagem do Personagem" class="character-image">
+                    </div>
+                </div>
+        </header>
+        
+        <script>
+            // Função para obter parâmetros de consulta da URL
+            function getQueryParameter(parameterName) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(parameterName);
+            }
+    
+            // Obtém o ID do personagem da URL
+            const characterID = getQueryParameter('id');
+    
+            if (characterID) {
+                // Substitua o valor src da imagem pelo URL com o ID do personagem
+                const characterImage = document.getElementById('characterImage');
+                characterImage.src = `https://xiv-character-cards.drakon.cloud/characters/id/${characterID}`;
+            } else {
+                // Se não houver ID do personagem na consulta, exiba uma mensagem de erro
+                document.getElementById('characterDetails').innerHTML = 'Nenhum detalhe de personagem disponível.';
+            }
+        </script>
+         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

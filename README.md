@@ -14,5 +14,5 @@ example:
 Make a portal to see news and check informations about your character, u can check mine if u dont have one : Hugonez Nez    
 
 ### Photos and Text ideas from here:   
-<https://na.finalfantasyxiv.com/lodestone>
+<https://na.finalfantasyxiv.com/lodestone>    
 <https://twitter.com/FF_XIV_EN>

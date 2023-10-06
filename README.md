@@ -1,6 +1,6 @@
 # Mobile-Project
 
-Class Project to learn mobile responsivity
+Class Project to learn mobile responsivity    
 Original Preset used in this project: <https://startbootstrap.com/theme/clean-blog>
 
 ## Api:    

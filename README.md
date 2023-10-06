@@ -4,9 +4,9 @@ Class Project to learn mobile responsivity
 Original Preset used in this project: <https://startbootstrap.com/theme/clean-blog>
 
 Api:
-xivapi.com for player search
-[xiv-character-cards](https://xiv-character-cards.drakon.cloud/characters/id/) for character details picture
-example:
+xivapi.com for player search    
+[xiv-character-cards](https://xiv-character-cards.drakon.cloud/characters/id/) for character details picture    
+example:    
 ![Hugonez Nez Details](https://github.com/Hugonez/Mobile-Project/assets/114820146/f3e9798a-10d7-48ad-b51d-3d69bd425787)
 
 

@@ -21,7 +21,7 @@
     <style>
         /* Add your custom styles here */
         .masthead {
-            background-image: url('path_to_your_background_image.jpg');
+            background-image: url('assets/img/search-bg.webp');
             background-size: cover;
             background-position: center;
             color: white;
@@ -55,8 +55,8 @@
                 </div>
             </nav>
             <header class="masthead"  style="background-image: url('assets/img/search-bg.webp')">
-                <div class="container position-relative px-4 px-lg-5">
-             
+            </header>
+                        
                    
     <style>
         #searchForm {
@@ -82,13 +82,11 @@
             padding: 10px 20px;
             margin: 5px;
             cursor: pointer;
-            display: block;
-            width: 50%; /* Defina uma largura para os botões */
-            margin: 0 auto; /* Centralize os botões horizontalmente */
+            width: calc(30% - 10px);
         }
     </style>
 <body>
-    
+    <div class="container position-relative px-4 px-lg-5">
     <h1>Pesquise seu Personagem</h1>
     <form id="searchForm">
         <label for="characterName">Nome do Personagem:</label>
@@ -131,8 +129,8 @@
             }
 
             let html = '';
-            results.forEach(result => {
-                html += `<button onclick="showCharacterDetails(${result.ID})">${result.Name} (ID: ${result.ID})</button>`;
+                results.forEach(result => {
+                html += `<button onclick="showCharacterDetails(${result.ID})">${result.Name}<br>Home World: ${result.Server}</button>`;
             });
 
             searchResultsDiv.innerHTML = html;

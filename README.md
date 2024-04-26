@@ -3,8 +3,6 @@
 Class Project to learn mobile responsivity    
 Original Preset used in this project: <https://startbootstrap.com/theme/clean-blog>   
    
-## Prototype:   
-https://lodestone-hugo.netlify.app/
    
 ## Api:    
 xivapi.com for player search    
